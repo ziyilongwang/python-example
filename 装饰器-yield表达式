@@ -1,0 +1,24 @@
+# 代码说明 yield表达式本身是一个迭代器，同时也具有return属性。所以函数test2()具有return属性
+#!/usr/bin/env python
+#codiing:utf-8
+import time
+
+def cc(func):
+    def shijian(*args,**kwargs):
+        time_start=time.time()
+        func(*args,**kwargs)
+        time_end=time.time()
+        print time_start - time_end
+    return shijian()
+
+def test2():
+    for i in xrange(10000000):
+        yield i
+
+@cc
+def ceshi2():
+    c = test2()
+    print c
+    for i in c:
+        print i
+ceshi2
